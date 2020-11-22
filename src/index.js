@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const App = (props) => {
+  const [count, setCount] = useState(props.count);
+  const [text, setText] = useState('');
+
+  return (
+    <div>
+      <p>The current {text || 'count'} is {count}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+      <button onClick={() => setCount(props.count)}>reset</button>
+      <button onClick={() => setCount(count - 1)}>-1</button>
+      <input type="text" value={text} onChange={(event) => setText(event.target.value)} />
+    </div>
+  );
+};
+
+App.defaulProps = {
+  count: 0
+};
+
+const Jsx = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <App count={0} />
+  </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+ReactDOM.render(Jsx, document.getElementById('root'));
+
 reportWebVitals();
