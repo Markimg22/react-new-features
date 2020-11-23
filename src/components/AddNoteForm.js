@@ -13,15 +13,15 @@ const AddNoteForm = () => {
     setBody('');
   };
 
-  return (
-    <div>
+  return (                    // react fragment: quando você não precisa de um elemento raiz
+    <>
       <p>Add Note</p>
       <form onSubmit={addNote}>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         <textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>
         <button>add note</button>
       </form>
-    </div>
+    </>
   );
 };
 
